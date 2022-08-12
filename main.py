@@ -1,8 +1,10 @@
 from PIL import Image
 from pytesseract import pytesseract
 import os
-import pyttsx3
-s = pyttsx3.init()
+# import pyttsx3
+# s = pyttsx3.init()
+from gtts import gTTS
+from playsound import playsound
 #Define path to tessaract.exe
 path_to_tesseract = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
@@ -22,7 +24,9 @@ for root, dirs, file_names in os.walk(path_to_images):
         #Extract text from image
         text = pytesseract.image_to_string(img)
 
-        s.say(text)
-        s.runAndWait()
+        s = gTTS(text)
+        s.save('V3.mp3')
+        playsound('V3.mp3')
+
 
 
